@@ -1,0 +1,24 @@
+{"level":"error","message":"404 - Not Found - /auth/login - /auth/login - POST - ::1","timestamp":"2025-04-16T07:08:42.601Z"}
+{"level":"error","message":"404 - Not Found - /api/memos?page=1&limit=10&sortBy=date&sortDirection=desc - /api/memos?page=1&limit=10&sortBy=date&sortDirection=desc - GET - ::1","timestamp":"2025-04-16T23:22:39.647Z"}
+{"level":"error","message":"404 - Not Found - /api/memos?page=1&limit=10&sortBy=date&sortDirection=desc - /api/memos?page=1&limit=10&sortBy=date&sortDirection=desc - GET - ::1","timestamp":"2025-04-16T23:22:39.657Z"}
+{"level":"error","message":"404 - Not Found - /api/memos?page=1&limit=10&sortBy=date&sortDirection=desc - /api/memos?page=1&limit=10&sortBy=date&sortDirection=desc - GET - ::1","timestamp":"2025-04-16T23:22:53.629Z"}
+{"level":"error","message":"404 - Not Found - /api/memos?page=1&limit=10&sortBy=date&sortDirection=desc - /api/memos?page=1&limit=10&sortBy=date&sortDirection=desc - GET - ::1","timestamp":"2025-04-16T23:22:53.633Z"}
+{"level":"error","message":"404 - Not Found - /api/memos?page=1&limit=10&sortBy=date&sortDirection=desc - /api/memos?page=1&limit=10&sortBy=date&sortDirection=desc - GET - ::1","timestamp":"2025-04-16T23:22:56.797Z"}
+{"level":"error","message":"404 - Not Found - /api/memos?page=1&limit=10&sortBy=date&sortDirection=desc - /api/memos?page=1&limit=10&sortBy=date&sortDirection=desc - GET - ::1","timestamp":"2025-04-16T23:22:56.800Z"}
+{"level":"error","message":"404 - Not Found - /api/memos?page=1&limit=10&sortBy=date&sortDirection=desc - /api/memos?page=1&limit=10&sortBy=date&sortDirection=desc - GET - ::1","timestamp":"2025-04-16T23:26:01.134Z"}
+{"level":"error","message":"404 - Not Found - /api/memos?page=1&limit=10&sortBy=date&sortDirection=desc - /api/memos?page=1&limit=10&sortBy=date&sortDirection=desc - GET - ::1","timestamp":"2025-04-16T23:26:01.138Z"}
+{"level":"error","message":"500 - DailyReport validation failed: reportNumber: Path `reportNumber` is required., status: `published` is not a valid enum value for path `status`. - /api/reports - POST - ::1","timestamp":"2025-04-16T23:38:47.936Z"}
+{"level":"error","message":"500 - DailyReport validation failed: reportNumber: Path `reportNumber` is required., status: `published` is not a valid enum value for path `status`. - /api/reports - POST - ::1","timestamp":"2025-04-16T23:38:49.979Z"}
+{"level":"error","message":"500 - DailyReport validation failed: reportNumber: Path `reportNumber` is required. - /api/reports - POST - ::1","timestamp":"2025-04-16T23:48:13.222Z"}
+{"level":"error","message":"500 - DailyReport validation failed: reportNumber: Path `reportNumber` is required., status: `published` is not a valid enum value for path `status`. - /api/reports - POST - ::1","timestamp":"2025-04-16T23:48:16.994Z"}
+{"level":"error","message":"500 - DailyReport validation failed: reportNumber: Path `reportNumber` is required., status: `published` is not a valid enum value for path `status`. - /api/reports - POST - ::1","timestamp":"2025-04-16T23:49:02.963Z"}
+{"level":"error","message":"500 - DailyReport validation failed: reportNumber: Path `reportNumber` is required. - /api/reports - POST - ::1","timestamp":"2025-04-16T23:54:44.330Z"}
+{"level":"error","message":"500 - DailyReport validation failed: reportNumber: Path `reportNumber` is required. - /api/reports - POST - ::1","timestamp":"2025-04-17T00:03:07.919Z"}
+{"level":"error","message":"500 - DailyReport validation failed: reportNumber: Path `reportNumber` is required. - /api/reports - POST - ::1","timestamp":"2025-04-17T00:03:10.132Z"}
+{"level":"error","message":"500 - DailyReport validation failed: reportNumber: Path `reportNumber` is required. - /api/reports - POST - ::1","timestamp":"2025-04-17T00:03:32.192Z"}
+{"level":"error","message":"500 - DailyReport validation failed: reportNumber: Path `reportNumber` is required. - /api/reports - POST - ::1","timestamp":"2025-04-17T00:03:41.742Z"}
+{"level":"error","message":"500 - DailyReport validation failed: reportNumber: Path `reportNumber` is required. - /api/reports - POST - ::1","timestamp":"2025-04-17T00:04:41.061Z"}
+{"level":"error","message":"500 - DailyReport validation failed: reportNumber: Path `reportNumber` is required. - /api/reports - POST - ::1","timestamp":"2025-04-17T00:14:50.856Z"}
+{"level":"error","message":"500 - DailyReport validation failed: reportNumber: Path `reportNumber` is required. - /api/reports - POST - ::1","timestamp":"2025-04-17T00:15:02.164Z"}
+{"level":"error","message":"500 - DailyReport validation failed: reportNumber: Path `reportNumber` is required. - /api/reports - POST - ::1","timestamp":"2025-04-17T00:16:06.518Z"}
+{"level":"error","message":"500 - DailyReport validation failed: reportNumber: Path `reportNumber` is required. - /api/reports - POST - ::1","timestamp":"2025-04-17T00:17:30.057Z"}
