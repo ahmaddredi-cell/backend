@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const meetingCallSchema = new mongoose.Schema({
   referenceNumber: {
     type: String,
-    unique: true,
     required: true
   },
   type: {
@@ -112,7 +111,7 @@ const meetingCallSchema = new mongoose.Schema({
 
 // Create index for better search performance
 meetingCallSchema.index({ date: -1 });
-meetingCallSchema.index({ referenceNumber: 1 });
+meetingCallSchema.index({ referenceNumber: 1 }, { unique: true });
 meetingCallSchema.index({ type: 1 });
 meetingCallSchema.index({ status: 1 });
 meetingCallSchema.index({ 'participants.name': 'text', purpose: 'text' });

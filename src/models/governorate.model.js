@@ -9,7 +9,6 @@ const governorateSchema = new mongoose.Schema({
   code: {
     type: String,
     required: [true, 'رمز المحافظة مطلوب'],
-    unique: true,
     trim: true
   },
   regions: {
@@ -40,7 +39,7 @@ const governorateSchema = new mongoose.Schema({
 
 // Create index for better search performance
 governorateSchema.index({ name: 1 });
-governorateSchema.index({ code: 1 });
+governorateSchema.index({ code: 1 }, { unique: true });
 
 const Governorate = mongoose.model('Governorate', governorateSchema);
 

@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const dailyReportSchema = new mongoose.Schema({
   reportNumber: {
     type: String,
-    unique: true,
     required: true
   },
   reportDate: {
@@ -57,7 +56,7 @@ const dailyReportSchema = new mongoose.Schema({
 
 // Create index for better search performance
 dailyReportSchema.index({ reportDate: -1 });
-dailyReportSchema.index({ reportNumber: 1 });
+dailyReportSchema.index({ reportNumber: 1 }, { unique: true });
 dailyReportSchema.index({ status: 1 });
 dailyReportSchema.index({ reportType: 1 });
 dailyReportSchema.index({ createdBy: 1 });

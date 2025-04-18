@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const coordinationSchema = new mongoose.Schema({
   requestNumber: {
     type: String,
-    unique: true,
     required: true
   },
   requestTime: {
@@ -124,7 +123,7 @@ const coordinationSchema = new mongoose.Schema({
 
 // Create index for better search performance
 coordinationSchema.index({ requestDate: -1 });
-coordinationSchema.index({ requestNumber: 1 });
+coordinationSchema.index({ requestNumber: 1 }, { unique: true });
 coordinationSchema.index({ status: 1 });
 coordinationSchema.index({ governorate: 1 });
 coordinationSchema.index({ department: 1 });

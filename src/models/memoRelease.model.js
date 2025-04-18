@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const memoReleaseSchema = new mongoose.Schema({
   referenceNumber: {
     type: String,
-    unique: true,
     required: true
   },
   type: {
@@ -102,7 +101,7 @@ const memoReleaseSchema = new mongoose.Schema({
 
 // Create index for better search performance
 memoReleaseSchema.index({ date: -1 });
-memoReleaseSchema.index({ referenceNumber: 1 });
+memoReleaseSchema.index({ referenceNumber: 1 }, { unique: true });
 memoReleaseSchema.index({ type: 1 });
 memoReleaseSchema.index({ governorate: 1 });
 memoReleaseSchema.index({ status: 1 });

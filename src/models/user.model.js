@@ -122,7 +122,7 @@ userSchema.methods.hasPermission = function(module, action) {
 };
 
 // Create index for better search performance
-userSchema.index({ username: 1 });
+// userSchema.index({ username: 1 });
 userSchema.index({ role: 1 });
 userSchema.index({ governorate: 1 });
 

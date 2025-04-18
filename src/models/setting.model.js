@@ -4,7 +4,6 @@ const settingSchema = new mongoose.Schema({
   key: {
     type: String,
     required: true,
-    unique: true,
     trim: true
   },
   value: {
@@ -29,7 +28,7 @@ const settingSchema = new mongoose.Schema({
 });
 
 // Create index for better search performance
-settingSchema.index({ key: 1 });
+settingSchema.index({ key: 1 }, { unique: true });
 settingSchema.index({ category: 1 });
 
 const Setting = mongoose.model('Setting', settingSchema);
