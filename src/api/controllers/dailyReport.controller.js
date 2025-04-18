@@ -28,9 +28,15 @@ const getReports = async (req, res, next) => {
       filter.reportType = req.query.reportType;
     }
     
-    // Filter by status
+    // Filter by status (handle comma-separated values)
     if (req.query.status) {
-      filter.status = req.query.status;
+      // Check if it's a comma-separated list
+      if (req.query.status.includes(',')) {
+        // Split by comma and create $in query
+        filter.status = { $in: req.query.status.split(',') };
+      } else {
+        filter.status = req.query.status;
+      }
     }
     
     // Filter by governorate

@@ -11,7 +11,7 @@ const {
   getEventsByGovernorate
 } = require('../controllers/event.controller');
 const { authenticate, hasPermission } = require('../middlewares/auth.middleware');
-const { upload, handleUploadErrors } = require('../middlewares/upload.middleware');
+const { upload, uploadFile, handleUploadErrors } = require('../middlewares/upload.middleware');
 
 // All routes are protected
 router.use(authenticate);
@@ -26,11 +26,11 @@ router.delete('/:id', hasPermission('events', 'delete'), deleteEvent);
 // Special route for governorate events
 router.get('/by-governorate/:governorateId', hasPermission('events', 'read'), getEventsByGovernorate);
 
-// Attachment routes with file upload
+// Attachment routes with enhanced file upload handling
 router.post(
   '/:id/attachments',
   hasPermission('events', 'update'),
-  upload.single('attachment'),
+  uploadFile('attachment'), // Use improved file upload handler
   handleUploadErrors,
   addAttachment
 );

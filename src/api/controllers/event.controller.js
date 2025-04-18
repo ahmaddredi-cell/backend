@@ -173,13 +173,49 @@ const createEvent = async (req, res, next) => {
       });
     }
     
-    // Create event
+    // Format the date and time to ensure they're valid
+    let formattedEventTime, formattedEventDate;
+    
+    try {
+      formattedEventTime = new Date(eventTime);
+      formattedEventDate = new Date(eventDate);
+      
+      // Validate that dates are valid
+      if (isNaN(formattedEventTime.getTime()) || isNaN(formattedEventDate.getTime())) {
+        return res.status(400).json({
+          success: false,
+          message: 'تاريخ أو وقت الحدث غير صالح'
+        });
+      }
+    } catch (error) {
+      return res.status(400).json({
+        success: false,
+        message: 'خطأ في تنسيق التاريخ أو الوقت'
+      });
+    }
+    
+    // Generate event number based on report
+    const reportParts = report.reportNumber.split('-');
+    const dateStr = reportParts[1];
+    const reportTypeCode = reportParts[2];
+    
+    // Get the count of events for this report
+    const count = await Event.countDocuments({ reportId });
+    
+    // Generate the sequential number (padded with zeros)
+    const seq = (count + 1).toString().padStart(3, '0');
+    
+    // Set the event number: EVT-YYYYMMDD-X-XXX
+    const eventNumber = `EVT-${dateStr}-${reportTypeCode}-${seq}`;
+    
+    // Create event with explicit eventNumber
     const event = await Event.create({
       reportId,
+      eventNumber, // Explicitly set event number
       governorate,
       region,
-      eventTime: new Date(eventTime),
-      eventDate: new Date(eventDate),
+      eventTime: formattedEventTime,
+      eventDate: formattedEventDate,
       eventType,
       severity: severity || 'medium',
       description,
@@ -188,7 +224,7 @@ const createEvent = async (req, res, next) => {
       israeliResponse,
       results,
       casualties: casualties || { killed: 0, injured: 0, arrested: 0 },
-      status: status || 'ongoing',
+      status: status || 'ongoing', // Default to 'ongoing' if not provided
       coordinates,
       createdBy: req.user._id
     });
@@ -376,9 +412,13 @@ const deleteEvent = async (req, res, next) => {
  */
 const addAttachment = async (req, res, next) => {
   try {
+    console.log("addAttachment called for event ID:", req.params.id);
+    console.log("Request file:", req.file);
+    
     const event = await Event.findById(req.params.id);
     
     if (!event) {
+      console.error(`Event with ID ${req.params.id} not found`);
       return res.status(404).json({
         success: false,
         message: 'الحدث غير موجود'
@@ -387,22 +427,42 @@ const addAttachment = async (req, res, next) => {
     
     // Check if file was uploaded
     if (!req.file) {
+      console.error("No file found in request");
       return res.status(400).json({
         success: false,
         message: 'لم يتم تحميل أي ملف'
       });
     }
     
-    // Add attachment to event
-    event.attachments.push({
+    console.log("Current event attachments:", event.attachments);
+    
+    // Create the attachment object
+    const newAttachment = {
       filename: req.file.filename,
       path: req.file.path,
       mimetype: req.file.mimetype,
       size: req.file.size,
       uploadedAt: new Date()
-    });
+    };
     
-    await event.save();
+    console.log("Adding new attachment:", newAttachment);
+    
+    // Add attachment to event
+    if (!event.attachments) {
+      event.attachments = [];
+    }
+    
+    event.attachments.push(newAttachment);
+    
+    // Save the event with explicit options to ensure proper save
+    const updatedEvent = await event.save({ new: true });
+    
+    console.log("Event after save:", updatedEvent);
+    console.log("Attachments after save:", updatedEvent.attachments);
+    
+    // Verify the save worked by re-fetching the event
+    const verifiedEvent = await Event.findById(req.params.id);
+    console.log("Verified event attachments:", verifiedEvent.attachments);
     
     // Log the action
     await SystemLog.create({
@@ -418,9 +478,10 @@ const addAttachment = async (req, res, next) => {
     res.status(200).json({
       success: true,
       message: 'تم إضافة المرفق بنجاح',
-      data: event.attachments
+      data: verifiedEvent.attachments
     });
   } catch (error) {
+    console.error("Error adding attachment:", error);
     next(error);
   }
 };

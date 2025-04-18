@@ -18,6 +18,7 @@ const { upload, handleUploadErrors } = require('../middlewares/upload.middleware
 router.use(authenticate);
 
 // Routes with permission checks
+// All users should have 'reports.read' permission (added via add-reports-permissions.js utility)
 router.get('/', hasPermission('reports', 'read'), getReports);
 router.get('/:id', hasPermission('reports', 'read'), getReport);
 router.post('/', hasPermission('reports', 'create'), createReport);
